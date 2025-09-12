@@ -1,39 +1,55 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Search, 
-  Bell, 
-  Settings, 
-  User, 
-  LogOut, 
-  Moon, 
-  Sun, 
+import {
+  Search,
+  Bell,
+  Settings,
+  User,
+  LogOut,
+  Moon,
+  Sun,
   Monitor,
   Menu,
-  X
+  X,
+  Plus,
+  Zap
 } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth'
 import { useTheme } from '../../hooks/useTheme'
+import GlobalSearch from '../common/GlobalSearch'
+import { MobileMenu, MobileFAB, MobileSearch, useMobile } from '../common/MobileOptimized'
+import { useToast } from '../common/EnhancedToast'
 
 const Navbar: React.FC = () => {
   const { user, logout } = useAuth()
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, toggleTheme, themeIcon, themeLabel } = useTheme()
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const isMobile = useMobile()
+  const { success, info } = useToast()
 
   const handleThemeChange = () => {
-    const themes = ['light', 'dark', 'system'] as const
-    const currentIndex = themes.indexOf(theme)
-    const nextIndex = (currentIndex + 1) % themes.length
-    setTheme(themes[nextIndex])
+    toggleTheme()
+    success('Theme Changed', `Switched to ${themeLabel}`)
   }
 
-  const getThemeIcon = () => {
-    switch (theme) {
-      case 'light': return <Sun className="w-4 h-4" />
-      case 'dark': return <Moon className="w-4 h-4" />
-      case 'system': return <Monitor className="w-4 h-4" />
+  const handleSearch = (query: string) => {
+    setSearchQuery(query)
+    info('Search', `Searching for "${query}"`)
+  }
+
+  const handleQuickAction = (action: string) => {
+    switch (action) {
+      case 'new-prompt':
+        success('Quick Action', 'Creating new prompt...')
+        break
+      case 'optimize':
+        info('Quick Action', 'Opening prompt optimizer...')
+        break
+      default:
+        break
     }
   }
 
@@ -53,16 +69,17 @@ const Navbar: React.FC = () => {
 
           {/* Search */}
           <div className="flex-1 max-w-lg mx-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <input
-                type="text"
-                placeholder="Search prompts, templates, or categories..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              />
-            </div>
+            {isMobile ? (
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="w-full flex items-center space-x-2 px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-left"
+              >
+                <Search className="w-4 h-4 text-gray-400" />
+                <span className="text-gray-500">Search prompts, templates...</span>
+              </button>
+            ) : (
+              <GlobalSearch />
+            )}
           </div>
 
           {/* Right side */}
@@ -71,9 +88,9 @@ const Navbar: React.FC = () => {
             <button
               onClick={handleThemeChange}
               className="p-2 rounded-lg text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              title={`Switch to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} mode`}
+              title={themeLabel}
             >
-              {getThemeIcon()}
+              <themeIcon className="w-4 h-4" />
             </button>
 
             {/* Notifications */}
@@ -174,6 +191,23 @@ const Navbar: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Mobile Search */}
+      <MobileSearch
+        isOpen={isSearchOpen}
+        onToggle={() => setIsSearchOpen(!isSearchOpen)}
+        onSearch={handleSearch}
+        placeholder="Search prompts, templates, or categories..."
+      />
+
+      {/* Mobile FAB */}
+      {isMobile && (
+        <MobileFAB
+          onClick={() => handleQuickAction('new-prompt')}
+          icon={<Plus className="w-6 h-6" />}
+          label="New Prompt"
+        />
+      )}
     </nav>
   )
 }

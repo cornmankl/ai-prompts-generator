@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react'
+import { Sun, Moon, Monitor } from 'lucide-react'
 
 type Theme = 'light' | 'dark' | 'system'
 
@@ -6,6 +7,10 @@ interface ThemeContextType {
   theme: Theme
   setTheme: (theme: Theme) => void
   actualTheme: 'light' | 'dark'
+  toggleTheme: () => void
+  themeIcon: React.ComponentType<{ className?: string }>
+  themeLabel: string
+  isDark: boolean
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
@@ -54,10 +59,40 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     root.classList.add(actualTheme)
   }, [theme, actualTheme])
 
+  const toggleTheme = () => {
+    setTheme(prev => {
+      if (prev === 'light') return 'dark'
+      if (prev === 'dark') return 'system'
+      return 'light'
+    })
+  }
+
+  const getThemeIcon = () => {
+    switch (theme) {
+      case 'light': return Sun
+      case 'dark': return Moon
+      case 'system': return Monitor
+      default: return Monitor
+    }
+  }
+
+  const getThemeLabel = () => {
+    switch (theme) {
+      case 'light': return 'Light Mode'
+      case 'dark': return 'Dark Mode'
+      case 'system': return 'System Theme'
+      default: return 'System Theme'
+    }
+  }
+
   const value = {
     theme,
     setTheme,
     actualTheme,
+    toggleTheme,
+    themeIcon: getThemeIcon(),
+    themeLabel: getThemeLabel(),
+    isDark: actualTheme === 'dark'
   }
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
