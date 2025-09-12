@@ -15,7 +15,9 @@ import {
   Star,
   History,
   Bookmark,
-  Zap
+  Zap,
+  CreditCard,
+  Trophy
 } from 'lucide-react'
 
 const Sidebar: React.FC = () => {
@@ -32,6 +34,9 @@ const Sidebar: React.FC = () => {
     { name: 'Collaboration', href: '/collaboration', icon: Users, badge: null },
     { name: 'Analytics', href: '/analytics', icon: BarChart3, badge: null },
     { name: 'Performance', href: '/performance', icon: Zap, badge: 'Optimized' },
+    { name: 'Subscription', href: '/subscription', icon: CreditCard, badge: 'Pro' },
+    { name: 'Community', href: '/community', icon: Users, badge: 'Social' },
+    { name: 'Achievements', href: '/achievements', icon: Trophy, badge: 'Gamify' },
   ]
 
   const quickActions = [

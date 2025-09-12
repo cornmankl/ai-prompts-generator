@@ -372,8 +372,8 @@ const AdvancedAIFeatures: React.FC = () => {
                                     key={model.id}
                                     onClick={() => setSelectedModel(model.id)}
                                     className={`p-3 rounded-lg border-2 cursor-pointer transition-colors ${selectedModel === model.id
-                                            ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                                            : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
+                                        ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
+                                        : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                                         }`}
                                 >
                                     <div className="flex items-center justify-between">

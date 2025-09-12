@@ -517,8 +517,8 @@ const ComponentRenderer: React.FC<{
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             className={`absolute border-2 rounded-lg p-3 cursor-pointer ${isSelected
-                    ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                    : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800'
+                ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
+                : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800'
                 }`}
             style={{
                 left: component.position.x,

@@ -181,8 +181,8 @@ const AdvancedDashboard: React.FC = () => {
                         <button
                             onClick={() => setViewMode('grid')}
                             className={`p-2 rounded-md transition-colors ${viewMode === 'grid'
-                                    ? 'bg-white dark:bg-gray-700 shadow-sm'
-                                    : 'hover:bg-gray-200 dark:hover:bg-gray-700'
+                                ? 'bg-white dark:bg-gray-700 shadow-sm'
+                                : 'hover:bg-gray-200 dark:hover:bg-gray-700'
                                 }`}
                         >
                             <Grid className="w-4 h-4" />
@@ -190,8 +190,8 @@ const AdvancedDashboard: React.FC = () => {
                         <button
                             onClick={() => setViewMode('list')}
                             className={`p-2 rounded-md transition-colors ${viewMode === 'list'
-                                    ? 'bg-white dark:bg-gray-700 shadow-sm'
-                                    : 'hover:bg-gray-200 dark:hover:bg-gray-700'
+                                ? 'bg-white dark:bg-gray-700 shadow-sm'
+                                : 'hover:bg-gray-200 dark:hover:bg-gray-700'
                                 }`}
                         >
                             <List className="w-4 h-4" />
@@ -257,8 +257,8 @@ const AdvancedDashboard: React.FC = () => {
 
             {/* Dashboard Widgets */}
             <div className={`grid gap-6 ${viewMode === 'grid'
-                    ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
-                    : 'grid-cols-1'
+                ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+                : 'grid-cols-1'
                 }`}>
                 <AnimatePresence>
                     {widgets.map((widget) => (

@@ -1,156 +1,156 @@
 import React, { useState, useEffect, useMemo, Suspense, lazy } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Zap, 
-  Cpu, 
-  HardDrive, 
-  Wifi, 
-  WifiOff, 
-  Download, 
-  Upload, 
-  RefreshCw,
-  Settings,
-  BarChart3,
-  TrendingUp,
-  Clock,
-  Battery,
-  Monitor,
-  Smartphone,
-  Tablet,
-  Signal,
-  AlertTriangle,
-  CheckCircle,
-  XCircle,
-  Info,
-  Play,
-  Pause,
-  Square,
-  RotateCcw,
-  Maximize,
-  Minimize,
-  Layers,
-  Code,
-  Database,
-  Network,
-  Shield,
-  Lock,
-  Unlock,
-  Eye,
-  EyeOff,
-  Filter,
-  Search,
-  SortAsc,
-  SortDesc,
-  Grid,
-  List,
-  Calendar,
-  Timer,
-  Stopwatch,
-  Activity,
-  Target,
-  Award,
-  Star,
-  Heart,
-  ThumbsUp,
-  ThumbsDown,
-  MessageSquare,
-  Bell,
-  BellOff,
-  Volume2,
-  VolumeX,
-  Sun,
-  Moon,
-  Palette,
-  Brush,
-  Eraser,
-  Scissors,
-  Copy,
-  Paste,
-  Cut,
-  Undo,
-  Redo,
-  Save,
-  Folder,
-  File,
-  Image,
-  Video,
-  Music,
-  Archive,
-  Trash2,
-  Edit,
-  Plus,
-  Minus,
-  X,
-  Check,
-  ArrowUp,
-  ArrowDown,
-  ArrowLeft,
-  ArrowRight,
-  ChevronUp,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  Home,
-  User,
-  Users,
-  HelpCircle,
-  ExternalLink,
-  Link,
-  Unlink,
-  Share2,
-  Send,
-  Mail,
-  Phone,
-  MapPin,
-  Globe,
-  Compass,
-  Navigation,
-  Map,
-  Camera,
-  Mic,
-  MicOff,
-  Headphones,
-  HeadphonesOff,
-  Speaker,
-  SpeakerOff,
-  Radio,
-  Tv,
-  Laptop,
-  Desktop,
-  Server,
-  Cloud,
-  CloudOff,
-  CloudRain,
-  CloudSnow,
-  CloudLightning,
-  CloudDrizzle,
-  CloudFog,
-  Wind,
-  Thermometer,
-  Droplet,
-  Flame,
-  Snowflake,
-  Sunrise,
-  Sunset,
-  Umbrella,
-  Key,
-  Fingerprint,
-  QrCode,
-  Barcode,
-  CreditCard,
-  DollarSign,
-  Euro,
-  PoundSterling,
-  Yen,
-  Bitcoin,
-  TrendingDown,
-  BarChart,
-  PieChart,
-  LineChart,
-  AreaChart,
-  Scatter,
-  Radar,
-  Gauge
+import {
+    Zap,
+    Cpu,
+    HardDrive,
+    Wifi,
+    WifiOff,
+    Download,
+    Upload,
+    RefreshCw,
+    Settings,
+    BarChart3,
+    TrendingUp,
+    Clock,
+    Battery,
+    Monitor,
+    Smartphone,
+    Tablet,
+    Signal,
+    AlertTriangle,
+    CheckCircle,
+    XCircle,
+    Info,
+    Play,
+    Pause,
+    Square,
+    RotateCcw,
+    Maximize,
+    Minimize,
+    Layers,
+    Code,
+    Database,
+    Network,
+    Shield,
+    Lock,
+    Unlock,
+    Eye,
+    EyeOff,
+    Filter,
+    Search,
+    SortAsc,
+    SortDesc,
+    Grid,
+    List,
+    Calendar,
+    Timer,
+    Stopwatch,
+    Activity,
+    Target,
+    Award,
+    Star,
+    Heart,
+    ThumbsUp,
+    ThumbsDown,
+    MessageSquare,
+    Bell,
+    BellOff,
+    Volume2,
+    VolumeX,
+    Sun,
+    Moon,
+    Palette,
+    Brush,
+    Eraser,
+    Scissors,
+    Copy,
+    Paste,
+    Cut,
+    Undo,
+    Redo,
+    Save,
+    Folder,
+    File,
+    Image,
+    Video,
+    Music,
+    Archive,
+    Trash2,
+    Edit,
+    Plus,
+    Minus,
+    X,
+    Check,
+    ArrowUp,
+    ArrowDown,
+    ArrowLeft,
+    ArrowRight,
+    ChevronUp,
+    ChevronDown,
+    ChevronLeft,
+    ChevronRight,
+    Home,
+    User,
+    Users,
+    HelpCircle,
+    ExternalLink,
+    Link,
+    Unlink,
+    Share2,
+    Send,
+    Mail,
+    Phone,
+    MapPin,
+    Globe,
+    Compass,
+    Navigation,
+    Map,
+    Camera,
+    Mic,
+    MicOff,
+    Headphones,
+    HeadphonesOff,
+    Speaker,
+    SpeakerOff,
+    Radio,
+    Tv,
+    Laptop,
+    Desktop,
+    Server,
+    Cloud,
+    CloudOff,
+    CloudRain,
+    CloudSnow,
+    CloudLightning,
+    CloudDrizzle,
+    CloudFog,
+    Wind,
+    Thermometer,
+    Droplet,
+    Flame,
+    Snowflake,
+    Sunrise,
+    Sunset,
+    Umbrella,
+    Key,
+    Fingerprint,
+    QrCode,
+    Barcode,
+    CreditCard,
+    DollarSign,
+    Euro,
+    PoundSterling,
+    Yen,
+    Bitcoin,
+    TrendingDown,
+    BarChart,
+    PieChart,
+    LineChart,
+    AreaChart,
+    Scatter,
+    Radar,
+    Gauge
 } from 'lucide-react'
 
 // Lazy load components for code splitting
@@ -342,8 +342,8 @@ const PerformanceOptimizer: React.FC = () => {
                     <div className="flex items-center space-x-4">
                         <h1 className="text-2xl font-bold gradient-text">Performance Optimizer</h1>
                         <div className={`px-3 py-1 rounded-full text-sm font-medium ${performanceScore >= 80 ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' :
-                                performanceScore >= 60 ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300' :
-                                    'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'
+                            performanceScore >= 60 ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300' :
+                                'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'
                             }`}>
                             Score: {performanceScore}/100
                         </div>
@@ -353,8 +353,8 @@ const PerformanceOptimizer: React.FC = () => {
                         <button
                             onClick={() => setIsMonitoring(!isMonitoring)}
                             className={`px-4 py-2 rounded-lg flex items-center space-x-2 ${isMonitoring
-                                    ? 'bg-red-500 hover:bg-red-600 text-white'
-                                    : 'bg-green-500 hover:bg-green-600 text-white'
+                                ? 'bg-red-500 hover:bg-red-600 text-white'
+                                : 'bg-green-500 hover:bg-green-600 text-white'
                                 }`}
                         >
                             {isMonitoring ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
@@ -379,22 +379,22 @@ const PerformanceOptimizer: React.FC = () => {
                             <div
                                 key={optimization.id}
                                 className={`p-3 rounded-lg border-2 cursor-pointer transition-colors ${selectedOptimization === optimization.id
-                                        ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                                        : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
+                                    ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
+                                    : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                                     }`}
                                 onClick={() => setSelectedOptimization(optimization.id)}
                             >
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="font-medium text-sm">{optimization.name}</div>
                                     <div className={`w-2 h-2 rounded-full ${optimization.status === 'active' ? 'bg-green-500' :
-                                            optimization.status === 'pending' ? 'bg-yellow-500' : 'bg-gray-400'
+                                        optimization.status === 'pending' ? 'bg-yellow-500' : 'bg-gray-400'
                                         }`} />
                                 </div>
                                 <div className="text-xs text-gray-500 mb-2">{optimization.description}</div>
                                 <div className="flex items-center justify-between">
                                     <div className={`text-xs px-2 py-1 rounded ${optimization.impact === 'high' ? 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300' :
-                                            optimization.impact === 'medium' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300' :
-                                                'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                                        optimization.impact === 'medium' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300' :
+                                            'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
                                         }`}>
                                         {optimization.impact} impact
                                     </div>
@@ -418,13 +418,13 @@ const PerformanceOptimizer: React.FC = () => {
                             color="blue"
                             trend="down"
                         />
-            <MetricCard
-              title="Memory Usage"
-              value={`${Math.round(metrics.memoryUsage)}MB`}
-              icon={HardDrive}
-              color="green"
-              trend="down"
-            />
+                        <MetricCard
+                            title="Memory Usage"
+                            value={`${Math.round(metrics.memoryUsage)}MB`}
+                            icon={HardDrive}
+                            color="green"
+                            trend="down"
+                        />
                         <MetricCard
                             title="Cache Hit Rate"
                             value={`${Math.round(metrics.cacheHitRate)}%`}

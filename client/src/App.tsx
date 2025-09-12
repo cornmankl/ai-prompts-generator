@@ -26,6 +26,11 @@ const InteractivePromptBuilder = lazy(() => import('./components/builder/Interac
 const AdvancedAIFeatures = lazy(() => import('./components/ai/AdvancedAIFeatures'))
 const PerformanceOptimizer = lazy(() => import('./components/performance/PerformanceOptimizer'))
 
+// Business Components (Lazy loaded)
+const SubscriptionManager = lazy(() => import('./components/business/SubscriptionManager'))
+const CommunityHub = lazy(() => import('./components/community/CommunityHub'))
+const AchievementSystem = lazy(() => import('./components/gamification/AchievementSystem'))
+
 // Hooks
 import { useAuth } from './hooks/useAuth'
 import { useTheme } from './hooks/useTheme'
@@ -101,6 +106,9 @@ const App: React.FC = () => {
                     <Route path="/collaboration" element={<Collaboration />} />
                     <Route path="/analytics" element={<Analytics />} />
                     <Route path="/performance" element={<PerformanceOptimizer />} />
+                    <Route path="/subscription" element={<SubscriptionManager />} />
+                    <Route path="/community" element={<CommunityHub />} />
+                    <Route path="/achievements" element={<AchievementSystem />} />
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
