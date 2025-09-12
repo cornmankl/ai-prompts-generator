@@ -225,8 +225,8 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ items }) => {
                         key={item.id}
                         onClick={item.onClick}
                         className={`flex-1 flex flex-col items-center py-2 px-1 ${item.active
-                                ? 'text-primary-500'
-                                : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+                            ? 'text-primary-500'
+                            : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
                             }`}
                     >
                         <div className="relative">

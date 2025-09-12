@@ -23,11 +23,15 @@ const Sidebar: React.FC = () => {
 
   const navigation = [
     { name: 'Dashboard', href: '/', icon: LayoutDashboard, badge: null },
+    { name: 'Advanced Dashboard', href: '/advanced-dashboard', icon: BarChart3, badge: 'Pro' },
     { name: 'Generator', href: '/generator', icon: Sparkles, badge: 'New' },
+    { name: 'Interactive Builder', href: '/interactive-builder', icon: Zap, badge: 'AI' },
     { name: 'Library', href: '/library', icon: Library, badge: null },
-    { name: 'Context Engineer', href: '/context-engineer', icon: Brain, badge: 'AI' },
+    { name: 'Context Engineer', href: '/context', icon: Brain, badge: 'AI' },
+    { name: 'AI Features', href: '/ai-features', icon: Brain, badge: 'Advanced' },
     { name: 'Collaboration', href: '/collaboration', icon: Users, badge: null },
     { name: 'Analytics', href: '/analytics', icon: BarChart3, badge: null },
+    { name: 'Performance', href: '/performance', icon: Zap, badge: 'Optimized' },
   ]
 
   const quickActions = [

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
@@ -8,17 +8,23 @@ import Navbar from './components/layout/Navbar'
 import Sidebar from './components/layout/Sidebar'
 import Footer from './components/layout/Footer'
 
-// Page Components
-import Dashboard from './pages/Dashboard'
-import PromptGenerator from './pages/PromptGenerator'
-import PromptLibrary from './pages/PromptLibrary'
-import ContextEngineer from './pages/ContextEngineer'
-import Collaboration from './pages/Collaboration'
-import Analytics from './pages/Analytics'
-import Settings from './pages/Settings'
-import Profile from './pages/Profile'
-import Login from './pages/Login'
-import Register from './pages/Register'
+// Page Components (Lazy loaded for better performance)
+const Dashboard = lazy(() => import('./pages/Dashboard'))
+const PromptGenerator = lazy(() => import('./pages/PromptGenerator'))
+const PromptLibrary = lazy(() => import('./pages/PromptLibrary'))
+const ContextEngineer = lazy(() => import('./pages/ContextEngineer'))
+const Collaboration = lazy(() => import('./pages/Collaboration'))
+const Analytics = lazy(() => import('./pages/Analytics'))
+const Settings = lazy(() => import('./pages/Settings'))
+const Profile = lazy(() => import('./pages/Profile'))
+const Login = lazy(() => import('./pages/Login'))
+const Register = lazy(() => import('./pages/Register'))
+
+// Advanced Components (Lazy loaded)
+const AdvancedDashboard = lazy(() => import('./components/dashboard/AdvancedDashboard'))
+const InteractivePromptBuilder = lazy(() => import('./components/builder/InteractivePromptBuilder'))
+const AdvancedAIFeatures = lazy(() => import('./components/ai/AdvancedAIFeatures'))
+const PerformanceOptimizer = lazy(() => import('./components/performance/PerformanceOptimizer'))
 
 // Hooks
 import { useAuth } from './hooks/useAuth'
@@ -75,18 +81,31 @@ const App: React.FC = () => {
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
                 className="h-full"
               >
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/generator" element={<PromptGenerator />} />
-                  <Route path="/library" element={<PromptLibrary />} />
-                  <Route path="/context" element={<ContextEngineer />} />
-                  <Route path="/collaboration" element={<Collaboration />} />
-                  <Route path="/analytics" element={<Analytics />} />
-                  <Route path="/settings" element={<Settings />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
+                <Suspense fallback={
+                  <div className="flex items-center justify-center h-full">
+                    <div className="text-center">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
+                      <p className="text-gray-600 dark:text-gray-300">Loading component...</p>
+                    </div>
+                  </div>
+                }>
+                  <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/advanced-dashboard" element={<AdvancedDashboard />} />
+                    <Route path="/generator" element={<PromptGenerator />} />
+                    <Route path="/interactive-builder" element={<InteractivePromptBuilder />} />
+                    <Route path="/library" element={<PromptLibrary />} />
+                    <Route path="/context" element={<ContextEngineer />} />
+                    <Route path="/ai-features" element={<AdvancedAIFeatures />} />
+                    <Route path="/collaboration" element={<Collaboration />} />
+                    <Route path="/analytics" element={<Analytics />} />
+                    <Route path="/performance" element={<PerformanceOptimizer />} />
+                    <Route path="/settings" element={<Settings />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </Routes>
+                </Suspense>
               </motion.div>
             </AnimatePresence>
           </main>
