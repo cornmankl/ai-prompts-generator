@@ -1,89 +1,119 @@
 # AI Prompts Generator 🚀
 
-The most advanced AI prompt engineering platform with context engineering, real-time collaboration, and comprehensive analytics. Built with cutting-edge 2025 technologies and features.
+The **MOST ADVANCED** AI prompt engineering platform with comprehensive AI orchestration, FREE AI models, plugin system, and cutting-edge 2025 features. Built with the latest technologies and designed for maximum productivity and collaboration.
 
-## ✨ Features
+## 🌟 **LIVE DEMO**
+**🔗 [https://system-prompts-and-models-of-ai-tools-2gdrmjcoq.vercel.app](https://system-prompts-and-models-of-ai-tools-2gdrmjcoq.vercel.app)**
 
-### 🧠 Advanced AI Integration
-- **Prompt Optimization**: AI-powered prompt enhancement with multiple optimization strategies
-- **Context Engineering**: Sophisticated context layer management for maximum effectiveness
-- **Dynamic Generation**: Real-time prompt generation with multiple AI models
-- **Quality Validation**: Automated prompt quality scoring and improvement suggestions
+## ✨ **COMPREHENSIVE FEATURES**
 
-### 🤝 Real-time Collaboration
-- **Live Editing**: Collaborative prompt editing with real-time cursors
-- **Version Control**: Complete version history with branching and merging
-- **Comments & Reviews**: Inline commenting and review system
-- **User Management**: Role-based access control (Owner, Editor, Viewer)
+### 🧠 **AI Orchestration Framework** (FREE MODELS!)
+- **🆓 FREE AI Models**: GLM-4.5, QWEN 2.5 (72B, 32B, 14B), DeepSeek Coder, Moonshot v1, Baichuan2 Turbo, InternLM2 Chat
+- **🔗 Chain-of-Thought Reasoning**: Advanced reasoning capabilities
+- **🎯 Few-Shot Learning**: Context-aware learning from examples
+- **🤖 Multi-Model Consensus**: Compare and combine responses from multiple models
+- **⚡ Smart Model Selection**: Automatic best model selection based on task type
+- **🔄 Model Switching**: Seamless switching between different AI models
+- **📊 Performance Analytics**: Track model performance and usage statistics
 
-### 📊 Comprehensive Analytics
-- **Usage Tracking**: Detailed metrics on prompt performance and user engagement
-- **Performance Monitoring**: Real-time analytics on generation times and success rates
-- **Trend Analysis**: Historical data visualization and trend identification
-- **Custom Dashboards**: Personalized analytics views
+### 🔌 **Plugin System & External Integrations**
+- **📝 Notion Integration**: Sync prompts and data with Notion
+- **🐙 GitHub Integration**: Version control and collaboration
+- **💬 Slack Integration**: Team communication and notifications
+- **🎨 Figma Integration**: Design workflow integration
+- **📈 Google Analytics**: Advanced analytics and tracking
+- **🔧 Custom Plugins**: Create and manage custom integrations
+- **⚙️ Plugin Marketplace**: Discover and install community plugins
 
-### 📚 Prompt Library
-- **1000+ Pre-built Prompts**: Curated collection from top AI tools and platforms
-- **Smart Categorization**: AI-powered categorization and tagging
-- **Advanced Search**: Semantic search with filters and sorting
-- **Community Features**: Share, rate, and discover prompts
+### 🎨 **Advanced UI/UX Features**
+- **📊 Enhanced Dashboard**: Real-time analytics, widgets, and quick actions
+- **🎯 Interactive Prompt Builder**: Drag & drop visual prompt creation
+- **🔍 Global Search**: Real-time search with filters and suggestions
+- **💾 Auto-save**: Debounced auto-save with conflict resolution
+- **↩️ Undo/Redo**: Full history management with keyboard shortcuts
+- **📝 Markdown Editor**: Rich text editing with live preview
+- **📱 Mobile Optimization**: Touch gestures and responsive design
+- **🌙 Enhanced Theme System**: Dark/Light mode with smooth transitions
+- **🔔 Enhanced Toast Notifications**: Multiple types with action buttons
 
-### 🎨 Modern UI/UX
-- **Neural Design**: Futuristic UI with glassmorphism and neural-inspired elements
-- **Dark/Light Mode**: Seamless theme switching
-- **Responsive Design**: Optimized for all devices
-- **Accessibility**: WCAG 2.1 compliant interface
+### 💼 **Business Features**
+- **💳 Subscription Management**: Multiple pricing tiers and payment integration
+- **👥 Community Hub**: Forums, discussions, and user profiles
+- **🏆 Gamification System**: Achievements, badges, leaderboards, and progress tracking
+- **📊 Advanced Analytics**: Detailed insights and reporting
+- **🔒 Enterprise Security**: SSO, RBAC, and audit logs
 
-## 🏗️ Architecture
+### 🤝 **Real-time Collaboration**
+- **👥 Live Editing**: Collaborative prompt editing with real-time cursors
+- **📝 Version Control**: Complete version history with branching and merging
+- **💬 Comments & Reviews**: Inline commenting and review system
+- **👤 User Management**: Role-based access control (Owner, Editor, Viewer)
+- **🔔 Real-time Notifications**: Instant updates and alerts
 
-### Frontend Stack
-- **React 18** with TypeScript
-- **Vite** for fast development and building
-- **Tailwind CSS** for styling
-- **Framer Motion** for animations
-- **React Query** for data fetching
-- **React Router** for navigation
+### 📚 **Comprehensive Prompt Library**
+- **📖 1000+ Pre-built Prompts**: Curated collection from top AI tools
+- **🏷️ Smart Categorization**: AI-powered categorization and tagging
+- **🔍 Advanced Search**: Semantic search with filters and sorting
+- **⭐ Community Features**: Share, rate, and discover prompts
+- **📊 Usage Analytics**: Track prompt performance and popularity
 
-### Backend Stack
-- **Node.js** with Express
-- **TypeScript** for type safety
-- **MongoDB** for data storage
-- **JWT** for authentication
-- **WebSocket** for real-time features
+### ⚡ **Performance & PWA**
+- **📱 Progressive Web App**: Offline capabilities and app-like experience
+- **🔄 Service Worker**: Caching and background sync
+- **⚡ Code Splitting**: Lazy loading for optimal performance
+- **📊 Real-time Metrics**: Performance monitoring and optimization
+- **💾 Smart Caching**: Intelligent caching strategies
 
-### AI Integration
-- **OpenAI GPT-4** for prompt optimization
-- **Claude 3** for context analysis
-- **Gemini Pro** for content generation
-- **Custom AI models** for specialized tasks
+## 🏗️ **TECHNICAL ARCHITECTURE**
 
-## 🚀 Quick Start
+### **Frontend Stack**
+- **⚛️ React 18** with TypeScript
+- **⚡ Vite** for fast development and building
+- **🎨 Tailwind CSS** for styling
+- **🎭 Framer Motion** for animations
+- **🔄 React Query** for data fetching
+- **🧭 React Router** for navigation
+- **📱 PWA** capabilities
 
-### Prerequisites
-- Node.js 18+ 
+### **Backend Stack**
+- **🟢 Node.js** with Express.js
+- **📘 TypeScript** for type safety
+- **🍃 MongoDB** with Mongoose
+- **🔐 JWT** for authentication
+- **🔒 bcryptjs** for password hashing
+- **🌐 Socket.IO** for real-time features
+- **🛡️ Security Middleware**: Helmet, CORS, Rate Limiting, XSS Protection
+
+### **AI Integration**
+- **🆓 FREE AI Models**: GLM-4.5, QWEN 2.5, DeepSeek Coder, Moonshot v1, Baichuan2 Turbo, InternLM2 Chat
+- **🤖 AI Orchestration**: Smart model selection and management
+- **🧠 Advanced Features**: Chain-of-Thought, Few-Shot Learning
+- **📊 Performance Tracking**: Model usage and performance analytics
+
+## 🚀 **QUICK START**
+
+### **Prerequisites**
+- Node.js 18+
 - MongoDB 6+
 - npm or yarn
 
-### Installation
+### **Installation**
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/ai-prompts-generator.git
+   git clone https://github.com/cornmankl/ai-prompts-generator.git
    cd ai-prompts-generator
    ```
 
 2. **Install dependencies**
    ```bash
-   # Install root dependencies
-   npm install
+   # Install all dependencies
+   npm run install-all
    
-   # Install client dependencies
-   cd client
+   # Or install individually
    npm install
-   
-   # Install server dependencies
-   cd ../server
-   npm install
+   cd client && npm install
+   cd ../server && npm install
    ```
 
 3. **Set up environment variables**
@@ -102,136 +132,163 @@ The most advanced AI prompt engineering platform with context engineering, real-
    
    # JWT
    JWT_SECRET=your-super-secret-jwt-key
-   
-   # AI APIs
-   OPENAI_API_KEY=your-openai-api-key
-   CLAUDE_API_KEY=your-claude-api-key
-   GEMINI_API_KEY=your-gemini-api-key
+   JWT_EXPIRE=1h
    
    # Server
    PORT=5000
    NODE_ENV=development
+   CLIENT_URL=http://localhost:5173
    ```
 
 5. **Start the development servers**
    ```bash
-   # Start backend server
-   npm run server:dev
+   # Start both client and server
+   npm run dev
    
-   # Start frontend development server (in new terminal)
-   npm run client:dev
+   # Or start individually
+   npm run client:dev    # Frontend on http://localhost:5173
+   npm run server:dev    # Backend on http://localhost:5000
    ```
 
 6. **Open your browser**
-   Navigate to `http://localhost:3000` to see the application.
+   Navigate to `http://localhost:5173` to see the application.
 
-## 📁 Project Structure
+## 📁 **PROJECT STRUCTURE**
 
 ```
 ai-prompts-generator/
-├── client/                 # React frontend
+├── client/                          # React frontend
 │   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   │   ├── ai/        # AI-specific components
-│   │   │   ├── analytics/ # Analytics components
-│   │   │   ├── collaboration/ # Collaboration components
-│   │   │   ├── layout/    # Layout components
-│   │   │   └── ui/        # Basic UI components
-│   │   ├── hooks/         # Custom React hooks
-│   │   ├── pages/         # Page components
-│   │   ├── services/      # API services
-│   │   ├── types/         # TypeScript type definitions
-│   │   └── utils/         # Utility functions
-│   ├── public/            # Static assets
+│   │   ├── components/              # Reusable UI components
+│   │   │   ├── ai/                 # AI-specific components
+│   │   │   ├── analytics/          # Analytics components
+│   │   │   ├── business/           # Business features
+│   │   │   ├── builder/            # Interactive builder
+│   │   │   ├── collaboration/      # Collaboration components
+│   │   │   ├── community/          # Community features
+│   │   │   ├── common/             # Common components
+│   │   │   ├── dashboard/          # Dashboard components
+│   │   │   ├── gamification/       # Gamification system
+│   │   │   ├── layout/             # Layout components
+│   │   │   ├── performance/        # Performance components
+│   │   │   └── ui/                 # Basic UI components
+│   │   ├── hooks/                  # Custom React hooks
+│   │   ├── pages/                  # Page components
+│   │   ├── services/               # API services
+│   │   │   ├── aiOrchestration.ts  # AI orchestration service
+│   │   │   └── pluginSystem.ts     # Plugin system service
+│   │   ├── types/                  # TypeScript type definitions
+│   │   └── utils/                  # Utility functions
+│   ├── public/                     # Static assets
+│   │   ├── manifest.json           # PWA manifest
+│   │   └── sw.js                   # Service worker
 │   └── package.json
-├── server/                 # Node.js backend
-│   ├── routes/            # API route handlers
-│   ├── models/            # Database models
-│   ├── middleware/        # Express middleware
-│   ├── services/          # Business logic
-│   └── index.js          # Server entry point
-├── docs/                  # Documentation
-├── scripts/               # Build and deployment scripts
+├── server/                         # Node.js backend
+│   ├── src/
+│   │   ├── models/                 # Database models
+│   │   │   ├── User.ts            # User model
+│   │   │   └── Prompt.ts          # Prompt model
+│   │   ├── routes/                 # API route handlers
+│   │   ├── middleware/             # Express middleware
+│   │   ├── services/               # Business logic
+│   │   └── server.ts              # Server entry point
+│   └── package.json
+├── docs/                           # Documentation
+├── scripts/                        # Build and deployment scripts
+├── vercel.json                     # Vercel deployment config
 └── README.md
 ```
 
-## 🔧 Available Scripts
+## 🔧 **AVAILABLE SCRIPTS**
 
-### Root Level
+### **Root Level**
 - `npm run dev` - Start both client and server in development mode
 - `npm run build` - Build both client and server for production
 - `npm run start` - Start production servers
-- `npm run test` - Run all tests
-- `npm run lint` - Lint all code
+- `npm run install-all` - Install all dependencies
+- `npm run client:build` - Build client for production
+- `npm run client:dev` - Start client development server
+- `npm run server:dev` - Start server development server
 
-### Client
+### **Client**
 - `npm run client:dev` - Start React development server
 - `npm run client:build` - Build React app for production
 - `npm run client:preview` - Preview production build
 - `npm run client:lint` - Lint client code
 
-### Server
+### **Server**
 - `npm run server:dev` - Start Node.js development server
 - `npm run server:build` - Build server for production
 - `npm run server:start` - Start production server
 - `npm run server:lint` - Lint server code
 
-## 🎯 Key Features Deep Dive
+## 🎯 **KEY FEATURES DEEP DIVE**
 
-### AI Prompt Optimization
-- **Multiple Strategies**: Clarity, Conciseness, Creativity, Accuracy
-- **Model-Specific**: Optimized for different AI models (GPT-4, Claude, Gemini)
-- **Context-Aware**: Considers context and domain-specific requirements
-- **Quality Scoring**: Automated quality assessment and improvement suggestions
+### **AI Orchestration Framework**
+- **🆓 FREE AI Models**: Access to multiple free AI models without API costs
+- **🧠 Chain-of-Thought**: Advanced reasoning capabilities for complex tasks
+- **🎯 Few-Shot Learning**: Learn from examples for better performance
+- **🤖 Multi-Model Consensus**: Combine insights from multiple models
+- **⚡ Smart Selection**: Automatic model selection based on task requirements
+- **📊 Performance Tracking**: Monitor model performance and usage
 
-### Context Engineering
-- **Layer Management**: Multiple context layers with different weights
-- **Domain Analysis**: Automatic domain-specific context suggestions
-- **Relevance Scoring**: Real-time context relevance assessment
-- **Smart Suggestions**: AI-powered context improvement recommendations
+### **Plugin System**
+- **🔌 External Integrations**: Connect with popular tools and platforms
+- **⚙️ Custom Plugins**: Create and manage custom integrations
+- **🛒 Plugin Marketplace**: Discover and install community plugins
+- **🔧 Plugin Management**: Easy installation, configuration, and updates
 
-### Real-time Collaboration
-- **Live Cursors**: See collaborators' cursors in real-time
-- **Version Control**: Complete history with branching and merging
-- **Comments System**: Inline commenting and review workflow
-- **User Roles**: Granular permission system
+### **Advanced UI Features**
+- **📊 Enhanced Dashboard**: Real-time analytics and customizable widgets
+- **🎯 Interactive Builder**: Visual drag-and-drop prompt creation
+- **🔍 Global Search**: Powerful search with filters and suggestions
+- **💾 Auto-save**: Never lose your work with intelligent auto-saving
+- **↩️ Undo/Redo**: Complete history management with keyboard shortcuts
 
-### Analytics Dashboard
-- **Usage Metrics**: Track prompt performance and user engagement
-- **Trend Analysis**: Historical data visualization
-- **Performance Monitoring**: Real-time system performance metrics
-- **Custom Reports**: Generate and export custom analytics reports
+### **Business Features**
+- **💳 Subscription Management**: Flexible pricing and payment options
+- **👥 Community Hub**: Social features and user engagement
+- **🏆 Gamification**: Achievements, badges, and leaderboards
+- **📊 Advanced Analytics**: Comprehensive insights and reporting
 
-## 🔌 API Documentation
+## 🔌 **API DOCUMENTATION**
 
-### Authentication
+### **Authentication**
 - `POST /api/auth/register` - User registration
 - `POST /api/auth/login` - User login
 - `POST /api/auth/logout` - User logout
 - `GET /api/auth/profile` - Get user profile
 
-### Prompts
+### **Prompts**
 - `GET /api/prompts` - Get all prompts
 - `POST /api/prompts` - Create new prompt
 - `PUT /api/prompts/:id` - Update prompt
 - `DELETE /api/prompts/:id` - Delete prompt
 - `POST /api/prompts/:id/optimize` - Optimize prompt
 
-### AI Services
+### **AI Services**
 - `POST /api/ai/generate` - Generate AI content
 - `POST /api/ai/optimize` - Optimize prompt
 - `POST /api/ai/analyze-context` - Analyze context
 - `GET /api/ai/models` - Get available AI models
+- `POST /api/ai/chain-of-thought` - Chain-of-thought reasoning
+- `POST /api/ai/few-shot` - Few-shot learning
 
-### Collaboration
+### **Plugins**
+- `GET /api/plugins` - List available plugins
+- `POST /api/plugins/install` - Install plugin
+- `DELETE /api/plugins/:id` - Uninstall plugin
+- `POST /api/plugins/:id/execute` - Execute plugin action
+
+### **Collaboration**
 - `GET /api/collaboration/sessions` - Get collaboration sessions
 - `POST /api/collaboration/sessions` - Create collaboration session
 - `PUT /api/collaboration/sessions/:id` - Update session
 - `POST /api/collaboration/sessions/:id/invite` - Invite collaborator
 
-## 🧪 Testing
+## 🧪 **TESTING**
 
-### Running Tests
+### **Running Tests**
 ```bash
 # Run all tests
 npm test
@@ -249,15 +306,18 @@ npm run test:watch
 npm run test:coverage
 ```
 
-### Test Structure
-- **Unit Tests**: Individual component and function testing
-- **Integration Tests**: API endpoint and service testing
-- **E2E Tests**: Full application workflow testing
-- **Performance Tests**: Load and stress testing
+## 🚀 **DEPLOYMENT**
 
-## 🚀 Deployment
+### **Vercel Deployment** (Recommended)
+```bash
+# Install Vercel CLI
+npm i -g vercel
 
-### Production Build
+# Deploy to Vercel
+vercel --prod
+```
+
+### **Production Build**
 ```bash
 # Build for production
 npm run build
@@ -266,25 +326,15 @@ npm run build
 npm start
 ```
 
-### Environment Variables
+### **Environment Variables**
 Ensure all production environment variables are set:
 - `MONGODB_URI` - Production MongoDB connection string
 - `JWT_SECRET` - Secure JWT secret key
-- `OPENAI_API_KEY` - OpenAI API key
-- `CLAUDE_API_KEY` - Claude API key
-- `GEMINI_API_KEY` - Gemini API key
+- `JWT_EXPIRE` - JWT expiration time
 - `NODE_ENV=production`
+- `CLIENT_URL` - Frontend URL
 
-### Docker Deployment
-```bash
-# Build Docker image
-docker build -t ai-prompts-generator .
-
-# Run container
-docker run -p 3000:3000 -p 5000:5000 ai-prompts-generator
-```
-
-## 🤝 Contributing
+## 🤝 **CONTRIBUTING**
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/amazing-feature`
@@ -292,31 +342,48 @@ docker run -p 3000:3000 -p 5000:5000 ai-prompts-generator
 4. Push to the branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
 
-### Development Guidelines
+### **Development Guidelines**
 - Follow TypeScript best practices
 - Write comprehensive tests
 - Update documentation
 - Follow the existing code style
 - Ensure all tests pass
 
-## 📄 License
+## 📄 **LICENSE**
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## 🙏 **ACKNOWLEDGMENTS**
 
-- OpenAI for GPT models
-- Anthropic for Claude models
-- Google for Gemini models
-- The open-source community for amazing tools and libraries
+- **🆓 FREE AI Models**: GLM-4.5, QWEN, DeepSeek, Moonshot, Baichuan2, InternLM2
+- **⚛️ React Team** for the amazing framework
+- **🎨 Tailwind CSS** for the utility-first CSS framework
+- **🎭 Framer Motion** for smooth animations
+- **🍃 MongoDB** for the database
+- **🌐 Vercel** for hosting and deployment
+- **👥 Open Source Community** for amazing tools and libraries
 
-## 📞 Support
+## 📞 **SUPPORT**
 
-- **Documentation**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/your-username/ai-prompts-generator/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/ai-prompts-generator/discussions)
-- **Email**: support@ai-prompts-generator.com
+- **🌐 Live Demo**: [https://system-prompts-and-models-of-ai-tools-2gdrmjcoq.vercel.app](https://system-prompts-and-models-of-ai-tools-2gdrmjcoq.vercel.app)
+- **📚 Documentation**: [docs/](docs/)
+- **🐛 Issues**: [GitHub Issues](https://github.com/cornmankl/ai-prompts-generator/issues)
+- **💬 Discussions**: [GitHub Discussions](https://github.com/cornmankl/ai-prompts-generator/discussions)
+- **📧 Email**: cornman.kl@gmail.com
 
 ---
 
-**Built with ❤️ for the AI community**
+## 🎉 **FEATURES SUMMARY**
+
+✅ **AI Orchestration Framework** with FREE AI models  
+✅ **Plugin System** for external integrations  
+✅ **Advanced UI/UX** with interactive components  
+✅ **Business Features** (Subscription, Community, Gamification)  
+✅ **Real-time Collaboration** with live editing  
+✅ **PWA Support** with offline capabilities  
+✅ **Mobile Optimization** with touch gestures  
+✅ **Performance Optimization** with code splitting  
+✅ **Security Features** with JWT and bcrypt  
+✅ **Analytics Dashboard** with real-time metrics  
+
+**🚀 Built with ❤️ for the AI community - The most advanced AI prompts generator in 2025!**

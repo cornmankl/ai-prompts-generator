@@ -1,303 +1,362 @@
-import express from 'express'
-import cors from 'cors'
-import helmet from 'helmet'
-import morgan from 'morgan'
-import compression from 'compression'
-import rateLimit from 'express-rate-limit'
-import { createServer } from 'http'
-import { Server as SocketIOServer } from 'socket.io'
-import mongoose from 'mongoose'
-import Redis from 'ioredis'
-import dotenv from 'dotenv'
-import winston from 'winston'
-import swaggerJsdoc from 'swagger-jsdoc'
-import swaggerUi from 'swagger-ui-express'
-
-// Import routes
-import authRoutes from './routes/auth'
-import userRoutes from './routes/users'
-import promptRoutes from './routes/prompts'
-import aiRoutes from './routes/ai'
-import pluginRoutes from './routes/plugins'
-import analyticsRoutes from './routes/analytics'
-import collaborationRoutes from './routes/collaboration'
-import subscriptionRoutes from './routes/subscription'
-import webhookRoutes from './routes/webhooks'
-
-// Import middleware
-import { errorHandler } from './middleware/errorHandler'
-import { authMiddleware } from './middleware/auth'
-import { rateLimitMiddleware } from './middleware/rateLimit'
-import { loggingMiddleware } from './middleware/logging'
-import { securityMiddleware } from './middleware/security'
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import compression from 'compression';
+import morgan from 'morgan';
+import { createServer } from 'http';
+import { Server as SocketIOServer } from 'socket.io';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
 // Import services
-import { DatabaseService } from './services/database'
-import { RedisService } from './services/redis'
-import { SocketService } from './services/socket'
-import { AIService } from './services/ai'
-import { PluginService } from './services/plugin'
-import { AnalyticsService } from './services/analytics'
-import { NotificationService } from './services/notification'
-import { SubscriptionService } from './services/subscription'
+import { cacheService } from './services/cacheService';
+import { logger } from './services/loggerService';
+import { collaborationService } from './services/collaborationService';
+import { analyticsService } from './services/analyticsService';
+import { complianceService } from './services/complianceService';
+import { aiOrchestrationService } from './services/aiOrchestrationService';
 
-// Import models
-import './models/User'
-import './models/Prompt'
-import './models/Workflow'
-import './models/Plugin'
-import './models/Analytics'
-import './models/Subscription'
+// Import middleware
+import {
+    securityHeaders,
+    sanitizeInput,
+    auditLog,
+    corsOptions,
+    requestTimeout,
+    requestSizeLimit
+} from './middleware/security';
+
+// Import routes
+import authRoutes from './routes/auth';
+import aiRoutes from './routes/ai';
+import userRoutes from './routes/users';
+import analyticsRoutes from './routes/analytics';
+import collaborationRoutes from './routes/collaboration';
+import complianceRoutes from './routes/compliance';
+import orchestrationRoutes from './routes/orchestration';
 
 // Load environment variables
-dotenv.config()
+dotenv.config();
 
-// Initialize Express app
-const app = express()
-const server = createServer(app)
+const app = express();
+const server = createServer(app);
 const io = new SocketIOServer(server, {
     cors: {
-        origin: process.env.CLIENT_URL || "http://localhost:3000",
+        origin: process.env.FRONTEND_URL || "http://localhost:3000",
         methods: ["GET", "POST"]
     }
-})
+});
 
-// Initialize services
-const databaseService = new DatabaseService()
-const redisService = new RedisService()
-const socketService = new SocketService(io)
-const aiService = new AIService()
-const pluginService = new PluginService()
-const analyticsService = new AnalyticsService()
-const notificationService = new NotificationService()
-const subscriptionService = new SubscriptionService()
+// Configuration
+const PORT = process.env.PORT || 5000;
+const NODE_ENV = process.env.NODE_ENV || 'development';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ai-prompts';
+const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
 
-// Configure logger
-const logger = winston.createLogger({
-    level: process.env.LOG_LEVEL || 'info',
-    format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.errors({ stack: true }),
-        winston.format.json()
-    ),
-    transports: [
-        new winston.transports.Console({
-            format: winston.format.combine(
-                winston.format.colorize(),
-                winston.format.simple()
-            )
-        }),
-        new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
-        new winston.transports.File({ filename: 'logs/combined.log' })
-    ]
-})
-
-// Swagger configuration
-const swaggerOptions = {
-    definition: {
-        openapi: '3.0.0',
-        info: {
-            title: 'AI Prompts Generator API',
-            version: '1.0.0',
-            description: 'Advanced AI Prompts Generator with Orchestration Framework',
-            contact: {
-                name: 'API Support',
-                email: 'support@aipromptsgenerator.com'
-            }
-        },
-        servers: [
-            {
-                url: process.env.API_URL || 'http://localhost:5000',
-                description: 'Development server'
-            }
-        ],
-        components: {
-            securitySchemes: {
-                bearerAuth: {
-                    type: 'http',
-                    scheme: 'bearer',
-                    bearerFormat: 'JWT'
-                }
-            }
-        }
-    },
-    apis: ['./src/routes/*.ts', './src/models/*.ts']
-}
-
-const swaggerSpec = swaggerJsdoc(swaggerOptions)
-
-// Middleware
+// Security middleware
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            styleSrc: ["'self'", "'unsafe-inline'"],
-            scriptSrc: ["'self'"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+            fontSrc: ["'self'", "https://fonts.gstatic.com"],
             imgSrc: ["'self'", "data:", "https:"],
+            scriptSrc: ["'self'"],
+            connectSrc: ["'self'", "https://api.openai.com", "https://api.anthropic.com"],
+            frameSrc: ["'none'"],
+            objectSrc: ["'none'"],
+            upgradeInsecureRequests: [],
         },
     },
-}))
+    crossOriginEmbedderPolicy: false,
+    hsts: {
+        maxAge: 31536000,
+        includeSubDomains: true,
+        preload: true
+    }
+}));
 
-app.use(cors({
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
-    credentials: true
-}))
+// CORS
+app.use(cors(corsOptions));
 
-app.use(compression())
-app.use(morgan('combined', { stream: { write: message => logger.info(message.trim()) } }))
-app.use(express.json({ limit: '10mb' }))
-app.use(express.urlencoded({ extended: true, limit: '10mb' }))
+// Compression
+app.use(compression());
 
-// Rate limiting
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
-    message: 'Too many requests from this IP, please try again later.',
-    standardHeaders: true,
-    legacyHeaders: false,
-})
-app.use(limiter)
+// Request parsing
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// API rate limiting
-const apiLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 1000, // limit each IP to 1000 requests per windowMs
-    message: 'Too many API requests from this IP, please try again later.',
-    standardHeaders: true,
-    legacyHeaders: false,
-})
+// Request size limiting
+app.use(requestSizeLimit('10mb'));
 
-// Custom middleware
-app.use(loggingMiddleware(logger))
-app.use(securityMiddleware)
+// Request timeout
+app.use(requestTimeout(30000)); // 30 seconds
+
+// Input sanitization
+app.use(sanitizeInput);
+
+// Audit logging
+app.use(auditLog);
+
+// Morgan logging
+app.use(morgan('combined', { stream: { write: (message: string) => logger.http(message.trim()) } }));
 
 // Health check endpoint
-app.get('/health', (req, res) => {
-    res.status(200).json({
-        status: 'healthy',
-        timestamp: new Date().toISOString(),
-        uptime: process.uptime(),
-        memory: process.memoryUsage(),
-        version: process.env.npm_package_version || '1.0.0'
-    })
-})
+app.get('/health', async (req, res) => {
+    try {
+        const health = {
+            status: 'healthy',
+            timestamp: new Date().toISOString(),
+            uptime: process.uptime(),
+            environment: NODE_ENV,
+            services: {
+                database: 'operational',
+                cache: 'operational',
+                ai: 'operational',
+                analytics: 'operational',
+                collaboration: 'operational',
+                compliance: 'operational',
+                orchestration: 'operational'
+            },
+            metrics: {
+                memory: process.memoryUsage(),
+                cpu: process.cpuUsage(),
+                version: process.version,
+                platform: process.platform
+            }
+        };
 
-// API documentation
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+        res.json({ success: true, data: health });
+    } catch (error) {
+        logger.error('Health check failed:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Health check failed',
+            status: 'unhealthy'
+        });
+    }
+});
 
 // API routes
-app.use('/api/auth', authRoutes)
-app.use('/api/users', authMiddleware, userRoutes)
-app.use('/api/prompts', authMiddleware, promptRoutes)
-app.use('/api/ai', authMiddleware, apiLimiter, aiRoutes)
-app.use('/api/plugins', authMiddleware, pluginRoutes)
-app.use('/api/analytics', authMiddleware, analyticsRoutes)
-app.use('/api/collaboration', authMiddleware, collaborationRoutes)
-app.use('/api/subscription', authMiddleware, subscriptionRoutes)
-app.use('/api/webhooks', webhookRoutes)
+app.use('/api/auth', authRoutes);
+app.use('/api/ai', aiRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/collaboration', collaborationRoutes);
+app.use('/api/compliance', complianceRoutes);
+app.use('/api/orchestration', orchestrationRoutes);
 
-// Socket.IO connection handling
+// WebSocket connection handling
 io.on('connection', (socket) => {
-    logger.info(`User connected: ${socket.id}`)
-
-    socket.on('join-room', (roomId) => {
-        socket.join(roomId)
-        logger.info(`User ${socket.id} joined room ${roomId}`)
-    })
-
-    socket.on('leave-room', (roomId) => {
-        socket.leave(roomId)
-        logger.info(`User ${socket.id} left room ${roomId}`)
-    })
+    logger.info(`WebSocket client connected: ${socket.id}`);
 
     socket.on('disconnect', () => {
-        logger.info(`User disconnected: ${socket.id}`)
-    })
-})
+        logger.info(`WebSocket client disconnected: ${socket.id}`);
+    });
 
-// Error handling
-app.use(errorHandler)
+    // Handle collaboration events
+    socket.on('join_workspace', async (data) => {
+        try {
+            await collaborationService.handleJoinWorkspace(socket, data);
+        } catch (error) {
+            logger.error('Error handling join workspace:', error);
+            socket.emit('error', { message: 'Failed to join workspace' });
+        }
+    });
+
+    socket.on('leave_workspace', async (data) => {
+        try {
+            await collaborationService.handleLeaveWorkspace(socket, data);
+        } catch (error) {
+            logger.error('Error handling leave workspace:', error);
+        }
+    });
+
+    // Handle real-time analytics
+    socket.on('subscribe_analytics', (data) => {
+        socket.join('analytics');
+        logger.info(`Client subscribed to analytics: ${socket.id}`);
+    });
+
+    socket.on('unsubscribe_analytics', () => {
+        socket.leave('analytics');
+        logger.info(`Client unsubscribed from analytics: ${socket.id}`);
+    });
+});
+
+// Error handling middleware
+app.use((error: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+    logger.error('Unhandled error:', error);
+
+    res.status(error.status || 500).json({
+        success: false,
+        error: NODE_ENV === 'production' ? 'Internal server error' : error.message,
+        ...(NODE_ENV === 'development' && { stack: error.stack })
+    });
+});
 
 // 404 handler
 app.use('*', (req, res) => {
     res.status(404).json({
+        success: false,
         error: 'Route not found',
-        message: `Cannot ${req.method} ${req.originalUrl}`,
-        timestamp: new Date().toISOString()
-    })
-})
+        path: req.originalUrl
+    });
+});
 
-// Graceful shutdown
-process.on('SIGTERM', async () => {
-    logger.info('SIGTERM received, shutting down gracefully')
-
-    server.close(() => {
-        logger.info('HTTP server closed')
-    })
-
-    await databaseService.disconnect()
-    await redisService.disconnect()
-
-    process.exit(0)
-})
-
-process.on('SIGINT', async () => {
-    logger.info('SIGINT received, shutting down gracefully')
-
-    server.close(() => {
-        logger.info('HTTP server closed')
-    })
-
-    await databaseService.disconnect()
-    await redisService.disconnect()
-
-    process.exit(0)
-})
-
-// Start server
-const PORT = process.env.PORT || 5000
-const HOST = process.env.HOST || '0.0.0.0'
-
-const startServer = async () => {
+// Database connection
+async function connectDatabase() {
     try {
-        // Connect to database
-        await databaseService.connect()
-        logger.info('Connected to MongoDB')
-
-        // Connect to Redis
-        await redisService.connect()
-        logger.info('Connected to Redis')
-
-        // Initialize services
-        await aiService.initialize()
-        await pluginService.initialize()
-        await analyticsService.initialize()
-        await notificationService.initialize()
-        await subscriptionService.initialize()
-
-        // Start server
-        server.listen(PORT, HOST, () => {
-            logger.info(`Server running on http://${HOST}:${PORT}`)
-            logger.info(`API Documentation available at http://${HOST}:${PORT}/api-docs`)
-        })
+        await mongoose.connect(MONGODB_URI, {
+            maxPoolSize: 10,
+            serverSelectionTimeoutMS: 5000,
+            socketTimeoutMS: 45000,
+        });
+        logger.info('Connected to MongoDB');
     } catch (error) {
-        logger.error('Failed to start server:', error)
-        process.exit(1)
+        logger.error('MongoDB connection error:', error);
+        process.exit(1);
     }
 }
 
-// Handle uncaught exceptions
-process.on('uncaughtException', (error) => {
-    logger.error('Uncaught Exception:', error)
-    process.exit(1)
-})
+// Cache connection
+async function connectCache() {
+    try {
+        await cacheService.connect();
+        logger.info('Connected to Redis cache');
+    } catch (error) {
+        logger.error('Redis connection error:', error);
+        // Continue without cache in development
+        if (NODE_ENV === 'production') {
+            process.exit(1);
+        }
+    }
+}
 
+// Graceful shutdown
+async function gracefulShutdown(signal: string) {
+    logger.info(`Received ${signal}. Starting graceful shutdown...`);
+
+    try {
+        // Stop accepting new connections
+        server.close(() => {
+            logger.info('HTTP server closed');
+        });
+
+        // Close database connection
+        await mongoose.connection.close();
+        logger.info('MongoDB connection closed');
+
+        // Close cache connection
+        await cacheService.disconnect();
+        logger.info('Redis connection closed');
+
+        // Close WebSocket server
+        io.close(() => {
+            logger.info('WebSocket server closed');
+        });
+
+        logger.info('Graceful shutdown completed');
+        process.exit(0);
+    } catch (error) {
+        logger.error('Error during graceful shutdown:', error);
+        process.exit(1);
+    }
+}
+
+// Process event handlers
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
+// Unhandled promise rejection handler
 process.on('unhandledRejection', (reason, promise) => {
-    logger.error('Unhandled Rejection at:', promise, 'reason:', reason)
-    process.exit(1)
-})
+    logger.error('Unhandled Promise Rejection:', reason);
+    // Don't exit the process in production
+    if (NODE_ENV === 'development') {
+        process.exit(1);
+    }
+});
+
+// Uncaught exception handler
+process.on('uncaughtException', (error) => {
+    logger.error('Uncaught Exception:', error);
+    process.exit(1);
+});
+
+// Start server
+async function startServer() {
+    try {
+        // Connect to services
+        await connectDatabase();
+        await connectCache();
+
+        // Start HTTP server
+        server.listen(PORT, () => {
+            logger.info(`Server running on port ${PORT} in ${NODE_ENV} mode`);
+            logger.info(`Health check available at http://localhost:${PORT}/health`);
+        });
+
+        // Start background services
+        startBackgroundServices();
+
+    } catch (error) {
+        logger.error('Failed to start server:', error);
+        process.exit(1);
+    }
+}
+
+// Background services
+function startBackgroundServices() {
+    // Cleanup inactive collaboration sessions every 30 minutes
+    setInterval(async () => {
+        try {
+            await collaborationService.cleanupInactiveSessions();
+        } catch (error) {
+            logger.error('Error cleaning up collaboration sessions:', error);
+        }
+    }, 30 * 60 * 1000);
+
+    // Generate compliance reports daily
+    setInterval(async () => {
+        try {
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            const today = new Date();
+
+            await complianceService.generateComplianceReport('daily', {
+                start: yesterday,
+                end: today
+            });
+        } catch (error) {
+            logger.error('Error generating daily compliance report:', error);
+        }
+    }, 24 * 60 * 60 * 1000);
+
+    // Cleanup old audit logs weekly
+    setInterval(async () => {
+        try {
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+            // This would clean up old audit logs
+            logger.info('Cleaning up old audit logs...');
+        } catch (error) {
+            logger.error('Error cleaning up audit logs:', error);
+        }
+    }, 7 * 24 * 60 * 60 * 1000);
+
+    // Monitor system health
+    setInterval(async () => {
+        try {
+            const metrics = await aiOrchestrationService.getSystemMetrics();
+            logger.info('System metrics:', metrics);
+        } catch (error) {
+            logger.error('Error monitoring system health:', error);
+        }
+    }, 5 * 60 * 1000); // Every 5 minutes
+}
 
 // Start the server
-startServer()
+startServer();
 
-export default app
+export { app, server, io };

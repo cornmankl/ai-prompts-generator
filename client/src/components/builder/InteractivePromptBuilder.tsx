@@ -470,7 +470,17 @@ const InteractivePromptBuilder: React.FC = () => {
                                     onClick={() => setShowTemplates(false)}
                                     className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
                                 >
-                                    <X className="w-4 h-4" />
+                                    <span className="sr-only">Close</span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="w-4 h-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
                                 </button>
                             </div>
                             <div className="space-y-2">

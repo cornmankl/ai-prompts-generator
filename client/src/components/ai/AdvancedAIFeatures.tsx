@@ -29,7 +29,6 @@ import {
     TrendingUp,
     Clock,
     Cpu,
-    Memory,
     Wifi,
     WifiOff
 } from 'lucide-react'

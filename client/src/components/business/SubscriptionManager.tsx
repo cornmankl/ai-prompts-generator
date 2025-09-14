@@ -54,7 +54,6 @@ import {
     DollarSign,
     Euro,
     PoundSterling,
-    Yen,
     Bitcoin,
     TrendingUp as TrendingUpIcon,
     TrendingDown,
@@ -62,7 +61,6 @@ import {
     PieChart,
     LineChart,
     AreaChart,
-    Scatter,
     Radar,
     Gauge
 } from 'lucide-react'
@@ -404,8 +402,8 @@ const SubscriptionManager: React.FC = () => {
                                 key={plan.id}
                                 whileHover={{ scale: 1.02 }}
                                 className={`relative bg-white dark:bg-gray-800 rounded-xl border-2 p-6 ${plan.popular
-                                        ? 'border-primary-500 shadow-lg'
-                                        : 'border-gray-200 dark:border-gray-700'
+                                    ? 'border-primary-500 shadow-lg'
+                                    : 'border-gray-200 dark:border-gray-700'
                                     }`}
                             >
                                 {plan.popular && (
@@ -426,12 +424,12 @@ const SubscriptionManager: React.FC = () => {
 
                                 <div className="text-center mb-6">
                                     <div className={`inline-flex p-3 rounded-lg mb-4 ${plan.color === 'gray' ? 'bg-gray-100 dark:bg-gray-700' :
-                                            plan.color === 'blue' ? 'bg-blue-100 dark:bg-blue-900' :
-                                                'bg-purple-100 dark:bg-purple-900'
+                                        plan.color === 'blue' ? 'bg-blue-100 dark:bg-blue-900' :
+                                            'bg-purple-100 dark:bg-purple-900'
                                         }`}>
                                         <plan.icon className={`w-8 h-8 ${plan.color === 'gray' ? 'text-gray-600 dark:text-gray-400' :
-                                                plan.color === 'blue' ? 'text-blue-600 dark:text-blue-400' :
-                                                    'text-purple-600 dark:text-purple-400'
+                                            plan.color === 'blue' ? 'text-blue-600 dark:text-blue-400' :
+                                                'text-purple-600 dark:text-purple-400'
                                             }`} />
                                     </div>
 
@@ -455,10 +453,10 @@ const SubscriptionManager: React.FC = () => {
 
                                 <button
                                     onClick={() => handleUpgrade(plan.id)}
-                                    disabled={isLoading || (subscription && subscription.plan === plan.id)}
+                                    disabled={isLoading || !!(subscription && subscription.plan === plan.id)}
                                     className={`w-full py-3 px-4 rounded-lg font-medium transition-colors ${plan.popular
-                                            ? 'bg-primary-500 hover:bg-primary-600 text-white'
-                                            : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100'
+                                        ? 'bg-primary-500 hover:bg-primary-600 text-white'
+                                        : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100'
                                         } disabled:opacity-50 disabled:cursor-not-allowed`}
                                 >
                                     {isLoading && selectedPlan === plan.id ? (

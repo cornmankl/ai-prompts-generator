@@ -2,7 +2,7 @@
   "name": "ai-prompts-generator",
   "version": "1.0.0",
   "description": "Advanced AI Prompts Generator with Context Engineering and 2025 Features",
-  "main": "server/index.js",
+  "main": "server/dist/server.js",
   "scripts": {
     "setup": "node scripts/setup.js",
     "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
@@ -12,18 +12,22 @@
     "client:build": "cd client && npm run build",
     "client:preview": "cd client && npm run preview",
     "client:lint": "cd client && npm run lint",
-    "server:dev": "nodemon server/index.js",
-    "server:build": "echo \"Server build not needed for Node.js\"",
-    "server:start": "node server/index.js",
-    "server:lint": "echo \"Server linting not configured\"",
+    "client:test": "cd client && npm run test",
+    "server:dev": "cd server && npm run dev",
+    "server:build": "cd server && npm run build",
+    "server:start": "cd server && npm run start",
+    "server:lint": "cd server && npm run lint",
+    "server:test": "cd server && npm run test",
     "lint": "npm run client:lint && npm run server:lint",
-    "test": "echo \"Tests not implemented yet\"",
-    "install-all": "npm install && cd client && npm install",
+    "test": "npm run client:test && npm run server:test",
+    "test:watch": "concurrently \"npm run client:test -- --watch\" \"npm run server:test -- --watch\"",
+    "test:coverage": "concurrently \"npm run client:test -- --coverage\" \"npm run server:test -- --coverage\"",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
     "clean": "rm -rf client/dist client/node_modules server/node_modules node_modules",
-    "live": "live-server --port=3000 --open=/index.html",
-    "preview": "npm run client:build && npm run live",
-    "serve": "node server.js",
-    "preview-full": "npm run client:build && npm run serve"
+    "clean:all": "rm -rf client/dist client/node_modules server/node_modules server/dist node_modules",
+    "type-check": "cd client && npm run type-check && cd ../server && npm run type-check",
+    "format": "prettier --write \"**/*.{js,ts,tsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,tsx,json,md}\""
   },
   "keywords": [
     "ai",
@@ -63,6 +67,7 @@
   "devDependencies": {
     "concurrently": "^8.2.2",
     "live-server": "^1.2.2",
-    "nodemon": "^3.0.2"
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.0"
   }
 }
