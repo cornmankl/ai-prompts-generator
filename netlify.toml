@@ -1,0 +1,13 @@
+[build]
+  publish = "client/public"
+  command = "echo 'Static site ready'"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/api/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
