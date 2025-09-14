@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "ai-prompts-generator",
   "buildCommand": "npm run vercel-build",
   "outputDirectory": "client/dist",
   "installCommand": "npm run install-all",
@@ -28,10 +27,5 @@
   "env": {
     "NODE_ENV": "production"
   },
-  "regions": ["iad1"],
-  "functions": {
-    "api/*.js": {
-      "maxDuration": 30
-    }
-  }
+  "regions": ["iad1"]
 }
