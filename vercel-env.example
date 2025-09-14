@@ -1,0 +1,47 @@
+# Vercel Environment Variables
+# Copy this to Vercel dashboard or use Vercel CLI
+
+# Database
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/ai-prompts?retryWrites=true&w=majority
+
+# JWT Configuration
+JWT_SECRET=your_super_secure_jwt_secret_key_here
+JWT_REFRESH_SECRET=your_super_secure_refresh_secret_key_here
+JWT_EXPIRES_IN=15m
+JWT_REFRESH_EXPIRES_IN=7d
+
+# AI Provider API Keys
+OPENAI_API_KEY=your_openai_api_key
+ANTHROPIC_API_KEY=your_anthropic_api_key
+GOOGLE_API_KEY=your_google_api_key
+COHERE_API_KEY=your_cohere_api_key
+HUGGINGFACE_API_KEY=your_huggingface_api_key
+
+# Frontend Configuration
+FRONTEND_URL=https://your-app.vercel.app
+ALLOWED_ORIGINS=https://your-app.vercel.app
+
+# Email Configuration
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_app_password
+EMAIL_FROM=noreply@your-domain.com
+
+# Redis Configuration (Optional for Vercel)
+REDIS_URL=redis://username:password@host:port
+
+# Feature Flags
+FEATURE_AI_ORCHESTRATION=true
+FEATURE_REAL_TIME_COLLABORATION=true
+FEATURE_ADVANCED_ANALYTICS=true
+FEATURE_COMPLIANCE_MODE=false
+FEATURE_MOBILE_APP=true
+
+# Security
+BCRYPT_ROUNDS=12
+CORS_ORIGIN=https://your-app.vercel.app
+
+# Monitoring
+LOG_LEVEL=info
+ANALYTICS_ENABLED=true

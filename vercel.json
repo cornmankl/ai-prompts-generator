@@ -1,5 +1,11 @@
 {
   "version": 2,
+  "name": "ai-prompts-generator",
+  "buildCommand": "npm run vercel-build",
+  "outputDirectory": "client/dist",
+  "installCommand": "npm run install-all",
+  "devCommand": "npm run dev",
+  "framework": "vite",
   "builds": [
     {
       "src": "client/package.json",
@@ -7,16 +13,12 @@
       "config": {
         "distDir": "dist"
       }
-    },
-    {
-      "src": "server/src/server.ts",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/server/src/server.ts"
+      "dest": "/api/$1"
     },
     {
       "src": "/(.*)",
@@ -25,5 +27,11 @@
   ],
   "env": {
     "NODE_ENV": "production"
+  },
+  "regions": ["iad1"],
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 30
+    }
   }
 }
