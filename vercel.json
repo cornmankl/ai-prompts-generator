@@ -1,7 +1,7 @@
 {
   "version": 2,
   "buildCommand": "npm run vercel-build",
-  "outputDirectory": "client/dist",
+  "outputDirectory": "client/public",
   "installCommand": "cd client && npm install",
   "devCommand": "npm run dev",
   "framework": "vite",
@@ -12,7 +12,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/client/dist/$1"
+      "dest": "/client/public/$1"
     }
   ],
   "env": {
