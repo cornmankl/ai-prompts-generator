@@ -23,7 +23,7 @@
     "test": "npm run client:test && npm run server:test",
     "test:watch": "concurrently \"npm run client:test -- --watch\" \"npm run server:test -- --watch\"",
     "test:coverage": "concurrently \"npm run client:test -- --coverage\" \"npm run server:test -- --coverage\"",
-    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
+    "install-all": "npm install --legacy-peer-deps && cd client && npm install && cd ../server && npm install --legacy-peer-deps",
     "clean": "rm -rf client/dist client/node_modules server/node_modules node_modules",
     "clean:all": "rm -rf client/dist client/node_modules server/node_modules server/dist node_modules",
     "type-check": "cd client && npm run type-check && cd ../server && npm run type-check",
